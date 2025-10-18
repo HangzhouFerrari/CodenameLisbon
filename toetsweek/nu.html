@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Startpagina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    body {
+      margin: 0;
+      background-color: linear-gradient(#03AFFF, #f0f1f5);
+      font-family: 'Red Hat Display', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+.container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* horizontaal centreren */
+  justify-content: flex-start;
+  padding-top: 100px; /* afstand van bovenkant */
+  z-index: 2;
+  margin-left: 70px;
+}
+
+    .glow-group {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-30%);
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      filter: blur(50px);
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow-item {
+      width: 100%;
+      max-width: 2000px;
+      height: auto;
+      transform: scale(2.0);
+    }
+
+    .title {
+      position: relative;
+      z-index: 2;
+      color: #333333;
+      transform: translateY(-90%);
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .subtitle {
+       position: relative;
+       z-index: 2;
+       color: #333333;
+       opacity: 0.7;
+       font-size: 12px;
+       text-align: center;
+       margin-left: 5px;
+       margin-top: -70px;
+    }
+
+    h1 {
+      font-weight: 800;
+      margin: 0;
+    }
+
+.secondary-content {
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  text-align: center;
+  color: #333333;
+  font-weight: 600;
+  font-size: 14px;
+  gap: 5px;
+  width: 100%;
+  max-width: 1500px;
+}
+.weekdays div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  </style>
+</head>
+<body>
+  <div class="glow-group">
+    <svg class="glow-item" width="2562" height="837" viewBox="0 0 2562 837" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_83_14" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="467" y="19" width="2095" height="818">
+<path d="M2195.21 412.757C2302.49 316.298 2231.11 157.553 2420.25 147.397C2643.81 135.392 2571.24 399.006 2420.25 501.232C2300.12 582.564 2006.42 684.417 1979.38 575.746C1959.17 494.563 2119.85 480.522 2195.21 412.757Z" fill="#03AFFF"/>
+</mask>
+<g mask="url(#mask0_83_14)">
+<rect x="-1.62769" y="-594" width="2565.35" height="1576" fill="url(#paint0_radial_83_14)"/>
+</g>
+<mask id="mask1_83_14" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="2095" height="818">
+<path d="M91.2618 113.335C273.417 -19.3406 580.379 52.8751 813.297 151.348C1057.1 254.424 1230.24 406.055 1123.59 575.346C976.179 809.358 271.145 688.098 91.2618 462.768C-6.60302 340.177 -52.1274 217.774 91.2618 113.335Z" fill="#0009FF"/>
+</mask>
+<g mask="url(#mask1_83_14)">
+<rect x="-1.62769" y="-593" width="2563.72" height="1575" fill="url(#paint1_radial_83_14)"/>
+</g>
+<mask id="mask2_83_14" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="2095" height="818">
+<path d="M838.333 143.788C1002.56 54.3467 1131.53 -10.0751 1350.19 1.30334C1776.93 23.5091 1867.4 454.996 1595.18 658.166C1329.85 856.202 718.586 885.839 526.259 658.166C365.525 467.892 577.241 285.98 838.333 143.788Z" fill="#00F2FF"/>
+</mask>
+<g mask="url(#mask2_83_14)">
+<rect y="-593" width="2563.72" height="1575" fill="url(#paint2_radial_83_14)"/>
+</g>
+<mask id="mask3_83_14" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1559" y="79" width="724" height="585">
+<path d="M1713.51 130.781C1847.41 22.2668 2178.43 98.9951 2260.01 225.578C2321.01 320.233 2246.35 394.233 2150.93 477.485C2020.36 591.396 1812.7 721.031 1631.43 637.247C1461.9 558.889 1641.18 433.666 1668.15 304.464C1682.37 236.328 1645.94 185.541 1713.51 130.781Z" fill="#662FFF"/>
+</mask>
+<g mask="url(#mask3_83_14)">
+<rect y="-593" width="2563.72" height="1575" fill="url(#paint3_radial_83_14)"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_83_14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1281.05 194) rotate(90) scale(788 1282.68)">
+<stop stop-color="#03AFFF"/>
+<stop offset="1" stop-color="#03AFFF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint1_radial_83_14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1280.23 194.5) rotate(90) scale(787.5 1281.86)">
+<stop stop-color="#0009FF"/>
+<stop offset="1" stop-color="#0009FF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint2_radial_83_14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1281.86 194.5) rotate(90) scale(787.5 1281.86)">
+<stop stop-color="#00F2FF"/>
+<stop offset="1" stop-color="#00F2FF" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint3_radial_83_14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1281.86 194.5) rotate(90) scale(787.5 1281.86)">
+<stop stop-color="#662FFF"/>
+<stop offset="1" stop-color="#662FFF" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
+
+  </div>
+
+  <div class="container">
+    <div class="title">
+      <h1>Toetsweek 1</h1>
+    </div>
+    <div class="subtitle">
+      <h1>Klas 3 25-26</h1>
+    </div>
+  </div>
+  <div class="secondary-content">
+  <div class="weekdays">
+    <div>Maandag</div>
+    <div>Dinsdag</div>
+    <div>Woensdag</div>
+    <div>Donderdag</div>
+    <div>Vrijdag</div>
+    <div>Zaterdag</div>
+    <div>Zondag</div>
+    <div>Maandag</div>
+  </div>
+</div>
+</body>
+</html>
