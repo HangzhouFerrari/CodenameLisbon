@@ -136,9 +136,9 @@
 
 .grid-item {
   position: relative;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(235, 235, 235, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 32px;
+  border-radius: clamp(24px, 32px, 40px);
   box-shadow:
     0 0px 10px rgba(0, 5, 48, 0.1),
     inset 0 1px 1px rgba(255, 255, 255, 0.9);
@@ -150,10 +150,11 @@
   color: #333;
   transition: all 0.3s cubic-bezier(0,0,.47,1.15);
   overflow: hidden;
-  will-change: transform, filter;
+  will-change: transform, backdrop-filter;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
 
 /* afbeelding linksboven (max 60x60, responsive) */
 .grid-item .item-img {
@@ -234,14 +235,21 @@
 }
 .overlay-panel {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
-  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset,
+              1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
   color: #ffffff;
   width: min(400px, 92%);
   max-width: 400px;
-  border-radius: 28px;
+  border-radius: 36px;
   padding: 20px 20px;
   transform: translateY(8px);
   transition: transform .18s ease;
+  height: 200px;
+
+  /* ✨ nieuw toegevoegd ✨ */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* duwt header naar boven, knoppen naar onder */
 }
 .overlay.active .overlay-panel { transform: translateY(0); }
 .overlay-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
@@ -261,7 +269,6 @@
   font-family: 'Red Hat Display', sans-serif;
   transition: all 0.3s cubic-bezier(0,0,.47,1.15);
 }
-
 .overlay-btn-quizlet {
   padding: 8px 12px;
   background: linear-gradient(180deg, rgba(26, 95, 244, 0.40) 0%, rgba(26, 95, 244, 0.20) 100%);
@@ -373,14 +380,14 @@
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-4" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/engels.png) center/cover no-repeat" alt="Engels"></div>
       <div class="item-meta">
         <div class="item-title">En</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-5" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/scheikunde.png) center/cover no-repeat" alt="Scheikunde"></div>
       <div class="item-meta">
         <div class="item-title">Sk</div>
@@ -401,35 +408,35 @@
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-6" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/aardrijkskunde.png) center/cover no-repeat" alt="Aardrijkskunde"></div>
       <div class="item-meta">
         <div class="item-title">Ak</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-7" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/latijn.png) center/cover no-repeat" alt="Latijn"></div>
       <div class="item-meta">
         <div class="item-title">La</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-8" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/wiskunde.png) center/cover no-repeat" alt="Wiskunde"></div>
       <div class="item-meta">
         <div class="item-title">Wi</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-9" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/nederlands.png) center/cover no-repeat" alt="Nederlands"></div>
       <div class="item-meta">
         <div class="item-title">Ne</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-10" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/geschiedenis.png) center/cover no-repeat" alt="Geschiedenis"></div>
       <div class="item-meta">
         <div class="item-title">Gs</div>
@@ -457,42 +464,42 @@
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-11" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/biologie.png) center/cover no-repeat" alt="Biologie"></div>
       <div class="item-meta">
         <div class="item-title">Bi</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-12" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-13" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/muziek.png) center/cover no-repeat" alt="Muziek"></div>
       <div class="item-meta">
         <div class="item-title">Mu</div>
         <div class="item-subtitle">13:30-15:30</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-12" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-12" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-12" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
@@ -513,7 +520,7 @@
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-12" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Afbeelding 7"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
@@ -560,9 +567,9 @@
         </div>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
-        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
-        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -571,15 +578,12 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 4</div>
-          <div class="overlay-subtitle">Details voor overlay 4</div>
+          <div class="overlay-title">Engels</div>
+          <div class="overlay-subtitle">Stof hier</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
-        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
-        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -588,15 +592,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 5</div>
-          <div class="overlay-subtitle">Details voor overlay 5</div>
+          <div class="overlay-title">Scheikunde</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 1</b> Alles<br><br><b>Vaardigheden</b> 1 en 3 (blz. 171 niet)</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
-        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
-        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -605,15 +607,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 6</div>
-          <div class="overlay-subtitle">Details voor overlay 6</div>
+          <div class="overlay-title">Aardrijkskunde</div>
+          <div class="overlay-subtitle"><b>Hooftstuk 2</b> §1 t/m §8<br>Incl. begrippen</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
-        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
-        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -622,15 +622,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 7</div>
-          <div class="overlay-subtitle">Details voor overlay 7</div>
+          <div class="overlay-title">Latijn</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 14:</b> grammatica en cultuur<br><br><b>Tekst 14A en 14B:</b> Zorg dat je weet wat alles betekent</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
-        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
-        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -639,15 +637,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 8</div>
-          <div class="overlay-subtitle">Details voor overlay 8</div>
+          <div class="overlay-title">Wiskunde</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 1:</b> alles<br><br><b>Hoofdstuk 6:</b> §1, §2, §4</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
-        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
-        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -656,15 +652,12 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 9</div>
-          <div class="overlay-subtitle">Details voor overlay 9</div>
+          <div class="overlay-title">Nederlands</div>
+          <div class="overlay-subtitle"><b>Aantekeningen: </b> alles over stijlfiguren en beeldspraak</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
-        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
-        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -673,15 +666,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 10</div>
-          <div class="overlay-subtitle">Details voor overlay 10</div>
+          <div class="overlay-title">Geschiedenis</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 1: </b>§1 t/m §4<br><br><b>Hoofdstuk 2: </b>§1 t/m §3</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
-        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
-        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -690,15 +681,13 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 11</div>
-          <div class="overlay-subtitle">Details voor overlay 11</div>
+          <div class="overlay-title">Biologie</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 2 en 5: </b>Alles</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
-        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
-        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -707,15 +696,12 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 12</div>
-          <div class="overlay-subtitle">Details voor overlay 12</div>
+          <div class="overlay-title">Frans</div>
+          <div class="overlay-subtitle"><b>Mondeling: </b>stof onbekend</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
-        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
-        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
       </div>
     </div>
   </div>
@@ -724,35 +710,15 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 13</div>
-          <div class="overlay-subtitle">Details voor overlay 13</div>
+          <div class="overlay-title">Muziek</div>
+          <div class="overlay-subtitle"><b>Keuzeopdracht: </b>Presenteer je keuzeopdracht</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
-        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
-        <button class="overlay-btn" data-open="overlay-2">Open 2</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
       </div>
     </div>
   </div>
-
-  <div id="overlay-14" class="overlay" aria-hidden="true">
-    <div class="overlay-panel" role="dialog" aria-modal="true">
-      <div class="overlay-header">
-        <div>
-          <div class="overlay-title">Overlay 14</div>
-          <div class="overlay-subtitle">Details voor overlay 14</div>
-        </div>
-        <button class="overlay-close" data-close>&times;</button>
-      </div>
-      <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
-        <button class="overlay-btn" data-open="overlay-2">Open 2</button>
-        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
-    </div>
-   </div>
-</div>
 <script>
   // open/close helpers
   const openOverlay = id => {
