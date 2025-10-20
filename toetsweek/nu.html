@@ -32,6 +32,7 @@
   padding-top: 90px;
   z-index: 2;
   margin: 0 auto; /* centreer het blok horizontaal */
+  margin-left: 80px;
 }
 
     .glow-group {
@@ -65,7 +66,7 @@
       font-size: 24px; /* duidelijke, grotere titel */
       text-align: left; /* titel rechts uitlijnen */
       margin: 0;
-      margin-left: -80px;
+      margin-left: -10px;
     }
 
     .subtitle {
@@ -76,7 +77,6 @@
        font-size: 12px; /* grotere subtitel */
        text-align: left; /* subtitel rechts uitlijnen */
        margin-top: -5px; /* kleine ruimte onder de titel */
-       margin-left: -70px;
     }
 
     h1 {
@@ -114,6 +114,8 @@
   max-width: 1400px; /* iets breder zodat alles groter oogt */
   box-sizing: border-box;
   padding: 0 12px;
+  margin-left: 80px;
+  margin-right: 80px;
 }
 
 .grid {
@@ -127,6 +129,8 @@
   justify-content: center;
   box-sizing: border-box;
   padding: 0 12px;
+  margin-left: 80px;
+  margin-right: 80px;
   /* geen grid-auto-rows zodat aspect-ratio van items bepaalt hoogte */
 }
 
@@ -232,8 +236,8 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
   box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
   color: #ffffff;
-  width: min(300px, 92%);
-  max-width: 300px;
+  width: min(400px, 92%);
+  max-width: 400px;
   border-radius: 28px;
   padding: 20px 20px;
   transform: translateY(8px);
@@ -246,14 +250,37 @@
 .overlay-body { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
 .overlay-btn {
   padding: 8px 12px;
-  background: #0b1220;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
   font-weight: 700;
   font-size: 13px;
   font-family: 'Red Hat Display', sans-serif;
+  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
+}
+
+.overlay-btn-quizlet {
+  padding: 8px 12px;
+  background: linear-gradient(180deg, rgba(26, 95, 244, 0.40) 0%, rgba(26, 95, 244, 0.20) 100%);
+  color: #fff;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Red Hat Display', sans-serif;
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
+  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
+}
+
+.overlay-btn:hover, .overlay-btn-quizlet:hover {
+  background: rgba(255, 255, 255, 0.5);
+  filter: brightness(1.2);
+  transform: scale(1.1);
+  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
 }
   </style>
 </head>
@@ -309,7 +336,7 @@
       <h1>Toetsweek 1</h1>
     </div>
     <div class="subtitle">
-      <h2>Klas 3 25-26</h2> <!-- aangepast: h2 in plaats van tweede h1 -->
+      <h2>Klas 3 25-26</h2>
     </div>
   </div>
 <div class="secondary-content">
@@ -332,14 +359,14 @@
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-2" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/grieks.png) center/cover no-repeat" alt="Grieks"></div>
       <div class="item-meta">
         <div class="item-title">Gr</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item" data-clickable="true">
+    <div class="grid-item" data-overlay="overlay-3" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/natuurkunde.png) center/cover no-repeat" alt="Natuurkunde"></div>
       <div class="item-meta">
         <div class="item-title">Na</div>
@@ -499,31 +526,27 @@
       <div class="overlay-header">
         <div>
           <div class="overlay-title">Duits</div>
-          <div class="overlay-subtitle">Details voor overlay 1</div>
+          <div class="overlay-subtitle"><b>Vokabeln:</b> S43 (D-NL), S39, S41, S45 (D-NL, NL-D)<br><br><b>Grammatik:</b> 1A-1K (behalve o.v.t. regelmatige ww'en), 2A-2J (van p.vnw. alleen eerste naamval)<br><br><b>Lesen:</b> Texte Niveau B1</div>
         </div>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-2">Quizlet</button>
-        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
-        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn-quizlet">Quizlet</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
-
-  <!-- create overlays 2..14 with same structure; buttons open next ones (wrap) -->
   <div id="overlay-2" class="overlay" aria-hidden="true">
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 2</div>
-          <div class="overlay-subtitle">Details voor overlay 2</div>
+          <div class="overlay-title">Grieks</div>
+          <div class="overlay-subtitle">Stof hier</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
-        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
-        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
-        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Bestanden</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Theorie doornemen</button></a>
       </div>
     </div>
   </div>
@@ -532,10 +555,9 @@
     <div class="overlay-panel" role="dialog" aria-modal="true">
       <div class="overlay-header">
         <div>
-          <div class="overlay-title">Overlay 3</div>
-          <div class="overlay-subtitle">Details voor overlay 3</div>
+          <div class="overlay-title">Natuurkunde</div>
+          <div class="overlay-subtitle"><b>Hoofdstuk 1</b> §1 t/m §6<br>Inclusief aantekeningen</div>
         </div>
-        <button class="overlay-close" data-close>&times;</button>
       </div>
       <div class="overlay-body">
         <button class="overlay-btn" data-open="overlay-4">Open 4</button>
