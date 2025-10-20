@@ -191,17 +191,69 @@
   line-height: 1.1;
 }
 
-.grid-item:hover {
+.grid-item[data-clickable="true"]:hover {
   transform: scale(1.2);
   z-index: 3;
   transition: all 0.1s cubic-bezier(0,0,.47,1.15);
   filter: brightness(1.3);
+  background: rgba(255, 255, 255, 1);
+}
+
+.grid-item[data-clickable="false"]:hover {
+  z-index: 3;
+  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
+  filter: brightness(0.8);
 }
 
 .weekdays div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2,6,23,0.5);
+  backdrop-filter: blur(2px);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .18s ease, visibility .18s;
+  z-index: 9999;
+}
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+.overlay-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
+  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
+  color: #ffffff;
+  width: min(300px, 92%);
+  max-width: 300px;
+  border-radius: 28px;
+  padding: 20px 20px;
+  transform: translateY(8px);
+  transition: transform .18s ease;
+}
+.overlay.active .overlay-panel { transform: translateY(0); }
+.overlay-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.overlay-title { font-family: 'Red Hat Display', sans-serif; font-size: 24px; font-weight: 800; margin:0; }
+.overlay-subtitle { font-family: 'Red Hat Display', sans-serif; font-size: 16px; color: rgba(255, 255, 255, 0.65); margin-top:6px; }
+.overlay-body { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
+.overlay-btn {
+  padding: 8px 12px;
+  background: #0b1220;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Red Hat Display', sans-serif;
 }
   </style>
 </head>
@@ -273,176 +325,464 @@
   </div>
   <div class="grid">
     <!-- vervang lege items door items met unieke afbeelding (seed) en metadata -->
-    <div class="grid-item">
+    <div class="grid-item" data-overlay="overlay-1" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/duits.png) center/cover no-repeat" alt="Duits"></div>
       <div class="item-meta">
         <div class="item-title">Du</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/grieks.png) center/cover no-repeat" alt="Grieks"></div>
       <div class="item-meta">
         <div class="item-title">Gr</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/natuurkunde.png) center/cover no-repeat" alt="Natuurkunde"></div>
       <div class="item-meta">
         <div class="item-title">Na</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/engels.png) center/cover no-repeat" alt="Engels"></div>
       <div class="item-meta">
         <div class="item-title">En</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/scheikunde.png) center/cover no-repeat" alt="Scheikunde"></div>
       <div class="item-meta">
         <div class="item-title">Sk</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/aardrijkskunde.png) center/cover no-repeat" alt="Aardrijkskunde"></div>
       <div class="item-meta">
         <div class="item-title">Ak</div>
         <div class="item-subtitle">11:20-12:10</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/latijn.png) center/cover no-repeat" alt="Latijn"></div>
       <div class="item-meta">
         <div class="item-title">La</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/wiskunde.png) center/cover no-repeat" alt="Wiskunde"></div>
       <div class="item-meta">
         <div class="item-title">Wi</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/nederlands.png) center/cover no-repeat" alt="Nederlands"></div>
       <div class="item-meta">
         <div class="item-title">Ne</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/geschiedenis.png) center/cover no-repeat" alt="Geschiedenis"></div>
       <div class="item-meta">
         <div class="item-title">Gs</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Geen toets</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/biologie.png) center/cover no-repeat" alt="Biologie"></div>
       <div class="item-meta">
         <div class="item-title">Bi</div>
         <div class="item-subtitle">12:40-13:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/muziek.png) center/cover no-repeat" alt="Muziek"></div>
       <div class="item-meta">
         <div class="item-title">Mu</div>
         <div class="item-subtitle">13:30-15:30</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Frans"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="false">
       <div class="item-img" style="background: url(Assets/Icons/vrij.png) center/cover no-repeat" alt="Geen toets"></div>
       <div class="item-meta">
         <div class="item-title">Vrij</div>
         <div class="item-subtitle">Weekend</div>
       </div>
     </div>
-    <div class="grid-item">
+    <div class="grid-item" data-clickable="true">
       <div class="item-img" style="background: url(Assets/Icons/frans.png) center/cover no-repeat" alt="Afbeelding 7"></div>
       <div class="item-meta">
         <div class="item-title">Fa</div>
         <div class="item-subtitle">Hele week</div>
       </div>
     </div>
+
+    <div id="overlay-1" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Duits</div>
+          <div class="overlay-subtitle">Details voor overlay 1</div>
+        </div>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-2">Quizlet</button>
+        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
+        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- create overlays 2..14 with same structure; buttons open next ones (wrap) -->
+  <div id="overlay-2" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 2</div>
+          <div class="overlay-subtitle">Details voor overlay 2</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
+        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
+        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-3" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 3</div>
+          <div class="overlay-subtitle">Details voor overlay 3</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-4">Open 4</button>
+        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
+        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-4" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 4</div>
+          <div class="overlay-subtitle">Details voor overlay 4</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-5">Open 5</button>
+        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
+        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-5" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 5</div>
+          <div class="overlay-subtitle">Details voor overlay 5</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-6">Open 6</button>
+        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
+        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-6" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 6</div>
+          <div class="overlay-subtitle">Details voor overlay 6</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-7">Open 7</button>
+        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
+        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-7" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 7</div>
+          <div class="overlay-subtitle">Details voor overlay 7</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-8">Open 8</button>
+        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
+        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-8" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 8</div>
+          <div class="overlay-subtitle">Details voor overlay 8</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-9">Open 9</button>
+        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
+        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-9" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 9</div>
+          <div class="overlay-subtitle">Details voor overlay 9</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-10">Open 10</button>
+        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
+        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-10" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 10</div>
+          <div class="overlay-subtitle">Details voor overlay 10</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-11">Open 11</button>
+        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
+        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-11" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 11</div>
+          <div class="overlay-subtitle">Details voor overlay 11</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-12">Open 12</button>
+        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
+        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-12" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 12</div>
+          <div class="overlay-subtitle">Details voor overlay 12</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-13">Open 13</button>
+        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
+        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-13" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 13</div>
+          <div class="overlay-subtitle">Details voor overlay 13</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-14">Open 14</button>
+        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
+        <button class="overlay-btn" data-open="overlay-2">Open 2</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-14" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">Overlay 14</div>
+          <div class="overlay-subtitle">Details voor overlay 14</div>
+        </div>
+        <button class="overlay-close" data-close>&times;</button>
+      </div>
+      <div class="overlay-body">
+        <button class="overlay-btn" data-open="overlay-1">Open 1</button>
+        <button class="overlay-btn" data-open="overlay-2">Open 2</button>
+        <button class="overlay-btn" data-open="overlay-3">Open 3</button>
     </div>
    </div>
 </div>
+<script>
+  // open/close helpers
+  const openOverlay = id => {
+    closeAllOverlays();
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('active');
+    el.setAttribute('aria-hidden', 'false');
+  };
+  const closeOverlay = el => {
+    if (!el) return;
+    el.classList.remove('active');
+    el.setAttribute('aria-hidden', 'true');
+  };
+  const closeAllOverlays = () => {
+    document.querySelectorAll('.overlay.active').forEach(o => closeOverlay(o));
+  };
+
+  // grid-item clicks open assigned overlay
+  document.querySelectorAll('.grid-item[data-overlay]').forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.dataset.overlay;
+      if (target) openOverlay(target);
+    });
+  });
+
+  // overlay internal buttons
+  document.querySelectorAll('.overlay').forEach(overlay => {
+    // close button
+    overlay.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        closeOverlay(overlay);
+      });
+    });
+    // clicking outside panel closes
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeOverlay(overlay);
+    });
+    // buttons that open other overlays
+    overlay.querySelectorAll('[data-open]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const target = btn.dataset.open;
+        if (target) openOverlay(target);
+      });
+    });
+  });
+
+  // ESC key closes
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAllOverlays();
+  });
+</script>
 </body>
 </html>
