@@ -417,3 +417,61 @@
     background: rgba(255, 255, 255, 0.7);
     transform: scale(1.05);
 }
+
+/* nieuwe helper-klassen: zorg dat het 'glas' écht achter de huidige knop zit */
+.navigatie.glas-achter-current .nav-knop,
+.navigatie.glas-achter-current .nav-knop-current {
+  position: relative; /* nodig zodat z-index op knoppen werkt */
+}
+
+.navigatie.glas-achter-current .nav-knop-current {
+  z-index: 5; /* current knop boven het glas */
+}
+
+.navigatie.glas-achter-current .navigatie-glas {
+  z-index: -5; /* glas achter de current knop maar voor de achtergrond */
+}
+
+.main-content {
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.theorieen-lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 0;               /* geen ruimte tussen rijen */
+  width: 100%;
+  max-width: 360px;
+  margin: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+  height: auto;
+}
+ 
+ .lijst-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 0;            /* geen verticale marge */
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease;
+ }
+ 
+ .lijst-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+ }

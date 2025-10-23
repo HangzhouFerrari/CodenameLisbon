@@ -200,7 +200,7 @@
   backdrop-filter: blur(2px);
   visibility: hidden;
   opacity: 0;
-  transition: opacity .18s ease, visibility .18s;
+  transition: all .3s ease;
   z-index: 9999;
 }
 .overlay.active {
@@ -219,8 +219,6 @@
   transform: translateY(8px);
   transition: transform .18s ease;
   height: 200px;
-
-  /* ✨ nieuw toegevoegd ✨ */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* duwt header naar boven, knoppen naar onder */
@@ -415,4 +413,106 @@
   .probleem-knop:hover {
     background: rgba(255, 255, 255, 0.7);
     transform: scale(1.05);
+}
+
+/* nieuwe helper-klassen: zorg dat het 'glas' écht achter de huidige knop zit */
+.navigatie.glas-achter-current .nav-knop,
+.navigatie.glas-achter-current .nav-knop-current {
+  position: relative; /* nodig zodat z-index op knoppen werkt */
+}
+
+.navigatie.glas-achter-current .nav-knop-current {
+  z-index: 5; /* current knop boven het glas */
+}
+
+.navigatie.glas-achter-current .navigatie-glas {
+  z-index: -5; /* glas achter de current knop maar voor de achtergrond */
+}
+
+.main-content {
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  align-items: center; /* centreer verticaal binnen main-content (links gepositioneerd) */
+  margin: 20px auto;
+}
+
+/* lijst: 1 kolom, 11 rijen (automatisch door aantal items) */
+.theorieen-lijst {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;               /* geen ruimte tussen rijen */
+  width: 100%;
+  max-width: 200px;
+  margin: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+  height: auto;
+}
+
+/* lijst-item: klikbare rij met kleine vierkante afbeelding en titel */
+.lijst-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 0;                 /* geen verticale marge */
+  background:  linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
+              0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lijst-item:hover {
+  transform: scale(1.05);
+  z-index: 3;
+  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
+  filter: brightness(1.3);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* afbeelding */
+.lijst-img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex: 0 0 24px;
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
+              0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* titel */
+.lijst-titel {
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #0b1220;
+}
+
+/* kleine responsive aanpassing */
+@media (max-width: 900px) {
+  .main-content { align-items: flex-start; }
+  .theorieen-lijst { max-width: 100%; }
+}
+
+.mededeling {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
 }
