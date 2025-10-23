@@ -121,8 +121,7 @@
   justify-content: left;
   box-sizing: border-box;
   padding: 0 12px;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 20px auto;
   /* geen grid-auto-rows zodat aspect-ratio van items bepaalt hoogte */
 }
 
