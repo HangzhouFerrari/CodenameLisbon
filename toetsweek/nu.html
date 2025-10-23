@@ -6,329 +6,7 @@
   <title>CTP1 rooster | Velios</title>
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <style>
-    body {
-      margin: 0;
-      background-color: #f7f7f9;
-      font-family: 'Red Hat Display', sans-serif;
-      font-size: 18px; /* verhoogd basis lettergrootte */
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* titels links uitlijnen binnen de container */
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0;               /* verwijder eerdere margin-left die verschuift */
-  padding: 0;
-  box-sizing: border-box;
-}
-
-    .glow-group {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-30%);
-      width: 100%;
-      max-width: 700px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      will-change: filter;
-      opacity: 0.5;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .glow-item {
-      width: 100%;
-      max-width: 2000px;
-      height: auto;
-      transform: scale(2.0);
-    }
-
-    .title {
-      color: #333333;
-      font-size: 24px;
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .subtitle {
-       position: relative;
-       z-index: 2;
-       color: #333333;
-       opacity: 0.8;
-       font-size: 12px; /* grotere subtitel */
-       text-align: left; /* subtitel rechts uitlijnen */
-       margin-top: -5px; /* kleine ruimte onder de titel */
-       margin-left: 10px;
-    }
-
-    h1 {
-      font-weight: 800;
-      margin: 0;
-      /* geen font-size override hier zodat .title bepaalt */
-    }
-
-    h2 {
-      font-weight: 600;
-      margin: 0;
-    }
-
-.secondary-content {
-  justify-content: left;
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  align-items: left; /* center zodat beide grids gecentreerd zijn */
-}
-
-/* Weekdays en grid gebruiken exact dezelfde kolomopzet zodat ze verticaal uitgelijnd zijn */
-.weekdays {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr); /* gelijke kolommen als .grid */
-  text-align: left;
-  color: #333333;
-  font-weight: 600;
-  font-size: 16px; /* iets groter tekst */
-  column-gap: 40px; /* dezelfde kolomafstand als .grid */
-  width: 100%;
-  max-width: 1400px; /* iets breder zodat alles groter oogt */
-  box-sizing: border-box;
-  padding: 0 12px;
-  margin-left: 80px;
-  margin-right: 80px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr); /* gelijke kolommen als .weekdays */
-  gap: 18px; /* lichte toename in spacing */
-  column-gap: 40px; /* gelijke kolomafstand als .weekdays */
-  width: 100%;
-  max-width: 1400px; /* gelijke max-breedte als .weekdays */
-  margin: 12px auto 0 auto;
-  justify-content: left;
-  box-sizing: border-box;
-  padding: 0 12px;
-  margin-left: 80px;
-  margin-right: 80px;
-  /* geen grid-auto-rows zodat aspect-ratio van items bepaalt hoogte */
-}
-
-.grid-item {
-  position: relative;
-  background: rgba(235, 235, 235, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: clamp(24px, 32px, 40px);
-  box-shadow:
-    0 0px 10px rgba(0, 5, 48, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding: 12px;
-  color: #333;
-  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
-  overflow: hidden;
-  will-change: transform, backdrop-filter;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-
-/* afbeelding linksboven (max 60x60, responsive) */
-.grid-item .item-img {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  width: clamp(32px, 10vw, 50px);
-  height: clamp(32px, 10vw, 50px);
-  object-fit: cover;
-  border-radius: 16px;
-  z-index: 2;
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
-              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
-              0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* meta onderin links */
-.grid-item .item-meta {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  right: 12px; /* zorgt dat lange titels afbreken */
-  text-align: left;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.grid-item .item-title {
-  font-size: 24px; /* kleiner dan pagina (sub)titel */
-  font-weight: 800;
-  color: #0b1220;
-  line-height: 1.1;
-  margin-bottom: 4px;
-}
-
-.grid-item .item-subtitle {
-  font-size: 12px;
-  color: rgba(11,18,32,0.65);
-  line-height: 1.1;
-}
-
-.grid-item[data-clickable="true"]:hover {
-  transform: scale(1.2);
-  z-index: 3;
-  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
-  filter: brightness(1.3);
-  background: rgba(255, 255, 255, 1);
-}
-
-.grid-item[data-clickable="false"]:hover {
-  z-index: 3;
-  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
-  filter: brightness(0.8);
-}
-
-.weekdays div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(2,6,23,0.5);
-  backdrop-filter: blur(2px);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity .18s ease, visibility .18s;
-  z-index: 9999;
-}
-.overlay.active {
-  visibility: visible;
-  opacity: 1;
-}
-.overlay-panel {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
-  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset,
-              1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
-  color: #ffffff;
-  width: min(400px, 92%);
-  max-width: 400px;
-  border-radius: 36px;
-  padding: 20px 20px;
-  transform: translateY(8px);
-  transition: transform .18s ease;
-  height: 200px;
-
-  /* ✨ nieuw toegevoegd ✨ */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* duwt header naar boven, knoppen naar onder */
-}
-.overlay.active .overlay-panel { transform: translateY(0); }
-.overlay-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
-.overlay-title { font-family: 'Red Hat Display', sans-serif; font-size: 24px; font-weight: 800; margin:0; }
-.overlay-subtitle { font-family: 'Red Hat Display', sans-serif; font-size: 16px; color: rgba(255, 255, 255, 0.65); margin-top:6px; }
-.overlay-body { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
-.overlay-btn {
-  padding: 8px 12px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
-  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
-  color: #fff;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 13px;
-  font-family: 'Red Hat Display', sans-serif;
-  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
-}
-.overlay-btn-quizlet {
-  padding: 8px 12px;
-  background: linear-gradient(180deg, rgba(26, 95, 244, 0.40) 0%, rgba(26, 95, 244, 0.20) 100%);
-  color: #fff;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 13px;
-  font-family: 'Red Hat Display', sans-serif;
-  box-shadow: -1px -1px 0 0 rgba(255, 255, 255, 0.30) inset, 1px 1px 0 0 rgba(255, 255, 255, 0.50) inset;
-  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
-}
-
-.rechts-content {
-  display: flex;
-  align-items: center; /* centreer knop(en) verticaal tov titelblok */
-  gap: 12px;
-  margin-left: 16px;   /* optionele ruimte tussen titelblok en knoppen */
-  /* verwijder position:absolute en alles dat uit de flow haalt */
-  position: static;
-}
-
-.navigatie {
-  display: flex;
-  gap: 10px;
-}
-
-.overlay-btn:hover, .overlay-btn-quizlet:hover {
-  background: rgba(255, 255, 255, 0.5);
-  filter: brightness(1.2);
-  transform: scale(1.1);
-  transition: all 0.1s cubic-bezier(0,0,.47,1.15);
-}
-
-.boven-content {
-  width: 100%;
-  display: flex;
-  justify-content: center; /* center de header-row op het scherm */
-  align-items: center;     /* verticale uitlijning: titels en knoppen op 1 lijn */
-  padding: 24px 20px;      /* ruimte rondom, pas naar smaak */
-  box-sizing: border-box;
-  position: relative;
-  z-index: 2;
-  margin-top: 20px;
-}
-
-.nav-knop, .nav-knop-current {
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0);
-  color: #333333;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 14px;
-  font-family: 'Red Hat Display', sans-serif;
-  transition: all 0.3s cubic-bezier(0,0,.47,1.15);
-}
-
-.nav-knop:hover {
-  transform: scale(1.1);
-}
-  </style>
+  <link rel="stylesheet" id="themeStylesheet" href="light.css"/>
 </head>
 <body>
   <div class="glow-group">
@@ -344,9 +22,17 @@
      </div>
    </div>
    <div class="rechts-content">
+    <button class="probleem-knop" data-clickable="true" data-overlay="overlay-14">Wordt de pagina niet goed weergegeven?</button>
+    <div class="thema-toggle" id="themeToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="29.997" viewBox="0 0 30 29.997">
+        <path id="Path_1" data-name="Path 1" d="M9.949,29.147l-.01-.024A15,15,0,0,1,15,0c.694,0,.808,1.04.215,1.4a9.754,9.754,0,0,0-3.007,13.864l-.014.017a9.786,9.786,0,0,0,16.4-.55c.362-.6,1.405-.481,1.405.216a15.064,15.064,0,0,1-20.051,14.2Z" fill="rgba(0,0,0,0.9)"/>
+      </svg>
+    </div>
     <div class="navigatie">
       <button class="nav-knop-current">Rooster</button>
-      <button class="nav-knop">Theorieën</button>
+      <a href="theorieen" style="z-index: 0;"><button class="nav-knop" style="z-index:0;">Theorieën</button></a>
+      <div class="navigatie-glas"></div>
+      <div class="navigatie-achtergrond"></div>
     </div>
    </div>
   </div>
@@ -583,7 +269,7 @@
       <div class="overlay-header">
         <div>
           <div class="overlay-title">Engels</div>
-          <div class="overlay-subtitle">Stof hier</div>
+          <div class="overlay-subtitle"><b>Intro: </b>A t/m D<br><br><b>Unit 1: </b>A, B, F<br><br><b>Unit 2: </b>A, D t/m F</div>
         </div>
       </div>
       <div class="overlay-body">
@@ -723,6 +409,21 @@
       </div>
     </div>
   </div>
+
+  <div id="overlay-14" class="overlay" aria-hidden="true">
+    <div class="overlay-panel" role="dialog" aria-modal="true" style="height: 400px !important;">
+      <div class="overlay-header">
+        <div>
+          <div class="overlay-title">De pagina wordt niet goed weergegeven.</div>
+          <div class="overlay-subtitle">Als de pagina niet goed wordt weergegeven, kan dat liggen aan meerdere factoren.<br><br><b>1. Schermresolutie te hoog/laag:</b><br>Dit kan simpel opgelost worden door op het toetsenbord CTRL en + te drukken (voor te hoge resoluties) of CTRL en - (voor lage resoluties).<br><br><b>2. Desktop site op tablet/mobiel</b><br>Ook dit kan simpel opgelost worden door op je tablet/mobiel op de knop "Mobiele pagina" te klikken hieronder.<br><br>Lukt het nog steeds niet? Neem dan contact met mij op.</div>
+        </div>
+      </div>
+      <div class="overlay-body">
+        <a href="https://google.com"><button class="overlay-btn">Mobiele pagina</button></a>
+        <a href="https://google.com" target="_blank" rel="noopener noreferrer"><button class="overlay-btn">Neem contact op</button></a>
+      </div>
+    </div>
+  </div>
 <script>
   // open/close helpers
   const openOverlay = id => {
@@ -742,7 +443,7 @@
   };
 
   // grid-item clicks open assigned overlay
-  document.querySelectorAll('.grid-item[data-overlay]').forEach(item => {
+  document.querySelectorAll('.grid-item[data-overlay], .probleem-knop[data-overlay]').forEach(item => {
     item.addEventListener('click', () => {
       const target = item.dataset.overlay;
       if (target) openOverlay(target);
@@ -775,6 +476,49 @@
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeAllOverlays();
   });
+</script>
+<script>
+const glas = document.querySelector('.navigatie-glas');
+const nav = document.querySelector('.navigatie');
+const knoppen = document.querySelectorAll('.navigatie .nav-knop');
+let current = document.querySelector('.nav-knop-current');
+
+function moveGlassTo(el) {
+  const rect = el.getBoundingClientRect();
+  const parentRect = nav.getBoundingClientRect();
+  const x = rect.left - parentRect.left;
+  const y = rect.top - parentRect.top;
+  glas.style.left = `${x}px`;
+  glas.style.top = `${y}px`;
+  glas.style.width = `${rect.width}px`;
+  glas.style.height = `${rect.height}px`;
+}
+
+if (current) moveGlassTo(current);
+
+knoppen.forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    moveGlassTo(btn);
+    glas.classList.add('hover'); // 👈 glas lichter/groter bij hover
+  });
+  btn.addEventListener('mouseleave', () => {
+    moveGlassTo(current);
+    glas.classList.remove('hover'); // 👈 terug naar normale kleur/grootte
+  });
+});
+</script>
+<script>
+const toggle = document.getElementById('themeToggle');
+const stylesheet = document.getElementById('themeStylesheet');
+let dark = false;
+
+toggle.addEventListener('click', () => {
+  dark = !dark;
+  stylesheet.setAttribute('href', dark ? 'dark.css' : 'light.css');
+  toggle.innerHTML = dark
+    ? '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9 2a9 9 0 0 0 0 18 9 9 0 0 0 0-18z"/></svg>' // maan
+    : '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 4l1.42 2.83L17 7.5l-2.83 1.42L14 12l-1.42-3.08L9 7.5l2.83-0.67L12 4z"/></svg>'; // zon
+});
 </script>
 </body>
 </html>
