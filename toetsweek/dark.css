@@ -1,11 +1,10 @@
-<style>
 @font-face {
   font-family: 'Red Hat Display'; /* Geef hier een unieke naam */
   src: url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;600;800&display=swap') format('ttf'),
 }
     body {
       margin: 0;
-      background-color: #202021;
+      background-color: #1d1d1d;
       font-family: 'Red Hat Display', sans-serif;
       font-size: 18px; /* verhoogd basis lettergrootte */
       display: flex;
@@ -40,7 +39,7 @@
       justify-content: center;
       align-items: flex-start;
       will-change: filter;
-      opacity: 0.5;
+      opacity: 0.3;
       z-index: 0;
       pointer-events: none;
     }
@@ -53,7 +52,7 @@
     }
 
     .title {
-      color: #333333;
+      color: rgba(255, 255, 255, 0.9);
       font-size: 24px;
       margin: 0;
       padding: 0;
@@ -63,7 +62,7 @@
     .subtitle {
        position: relative;
        z-index: 2;
-       color: #333333;
+       color: rgba(255, 255, 255, 0.7);
        opacity: 0.8;
        font-size: 12px; /* grotere subtitel */
        text-align: left; /* subtitel rechts uitlijnen */
@@ -97,8 +96,8 @@
 .weekdays {
   display: grid;
   grid-template-columns: repeat(8, 1fr); /* gelijke kolommen als .grid */
-  text-align: left;
-  color: #333333;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   font-size: 16px; /* iets groter tekst */
   column-gap: 40px; /* dezelfde kolomafstand als .grid */
@@ -106,8 +105,8 @@
   max-width: 1400px; /* iets breder zodat alles groter oogt */
   box-sizing: border-box;
   padding: 0 12px;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 20px auto;
+  margin-bottom: -10px;
 }
 
 .grid {
@@ -121,19 +120,18 @@
   justify-content: left;
   box-sizing: border-box;
   padding: 0 12px;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 20px auto;
   /* geen grid-auto-rows zodat aspect-ratio van items bepaalt hoogte */
 }
 
 .grid-item {
   position: relative;
-  background: rgba(235, 235, 235, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: clamp(24px, 32px, 40px);
   box-shadow:
     0 0px 10px rgba(0, 5, 48, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -158,8 +156,8 @@
   object-fit: cover;
   border-radius: 16px;
   z-index: 2;
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
-              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.6) inset,
               0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -177,14 +175,14 @@
 .grid-item .item-title {
   font-size: 24px; /* kleiner dan pagina (sub)titel */
   font-weight: 800;
-  color: #0b1220;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 
 .grid-item .item-subtitle {
   font-size: 12px;
-  color: rgba(11,18,32,0.65);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.1;
 }
 
@@ -193,13 +191,13 @@
   z-index: 3;
   transition: all 0.1s cubic-bezier(0,0,.47,1.15);
   filter: brightness(1.3);
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .grid-item[data-clickable="false"]:hover {
   z-index: 3;
   transition: all 0.1s cubic-bezier(0,0,.47,1.15);
-  filter: brightness(0.8);
+  filter: brightness(0.3);
 }
 
 .weekdays div {
@@ -288,6 +286,7 @@
   gap: 10px;
   position: relative;
   z-index: 2;
+  margin-right: -20px;
 }
 
 .overlay-btn:hover, .overlay-btn-quizlet:hover {
@@ -299,6 +298,7 @@
 
 .boven-content {
   width: 100%;
+  max-width: 1400px;
   display: flex;
   justify-content: center; /* center de header-row op het scherm */
   align-items: center;     /* verticale uitlijning: titels en knoppen op 1 lijn */
@@ -306,13 +306,13 @@
   box-sizing: border-box;
   position: relative;
   z-index: 2;
-  margin-top: 20px;
+  margin: 20px auto; /* aangepast: centreer boven-content horizontaal */
 }
 
 .nav-knop, .nav-knop-current {
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0);
-  color: #333333;
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
   border: none;
   cursor: pointer;
@@ -337,12 +337,12 @@
   bottom: -6px;     /* padding onder */
   left: -10px;      /* padding links */
   right: -10px;     /* padding rechts */
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%); /* of wat je maar wilt */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
   backdrop-filter: blur(8px);
   border-radius: 26px;
   z-index: -10;
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
-              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.6) inset,
               0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -364,7 +364,7 @@
 /* Plaats het glas standaard achter de 'current' knop */
 .nav-knop-current {
   --glas-x: 0px; /* deze komt overeen met de x-offset van de current knop */
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .navigatie-glas.hover {
@@ -386,13 +386,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.20) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
   backdrop-filter: blur(2px);
   cursor: pointer;
   transition: all 0.3s ease;
   user-select: none;
-  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9) inset, 
-              -1px -1px 2px rgba(255, 255, 255, 0.9) inset,
+  box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.6) inset,
               0px 0px 5px rgba(0, 0, 0, 0.1);
   color: #333;
   transition: 0.3s ease;
@@ -407,5 +407,45 @@
 .thema-toggle svg {
   width: 20px;
   height: 20px;
+  color: rgba(255, 255, 255, 0.9);
 }
-  </style>
+.probleem-knop {
+    padding: 8px 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Red Hat Display', sans-serif;
+    transition: all 0.3s cubic-bezier(0,0,.47,1.15);
+    z-index: 2;
+    height: 44px;
+    width: auto;
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6) inset, 
+              -1px -1px 2px rgba(255, 255, 255, 0.6) inset,
+              0px 0px 5px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+  }
+  
+  .probleem-knop:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.05);
+}
+
+#loading-overlay{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #1d1d1d; /*zelfde kleur als dark.css body*/
+      color: #fff;
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 22px;
+      z-index: 999;
+      opacity: 1;
+      transition: opacity .4s ease;
+      pointer-events: none;
+    }
